@@ -1,5 +1,5 @@
 classdef interfazapp < matlab.apps.AppBase
-    %% COMPONENTES DE LA APLICACIÓN %%
+    %% COMPONENTES DE LA APLICACIÃ“N %%
     properties (Access = public)
         UIFigure                       matlab.ui.Figure
         AddfilecontainingcsvfileDropDownLabel  matlab.ui.control.Label 
@@ -15,11 +15,11 @@ classdef interfazapp < matlab.apps.AppBase
         ComputeButton                  matlab.ui.control.Button % Compute
         DelateButton                   matlab.ui.control.Button % Delate
         UIAxes                         matlab.ui.control.UIAxes % Grafica Escalograma
-        UIAxes2                        matlab.ui.control.UIAxes % Grafica Señal ERG
+        UIAxes2                        matlab.ui.control.UIAxes % Grafica SeÃ±al ERG
         UIAxes3                        matlab.ui.control.UIAxes % Grafica Promedio Escalograma
         SaveFigureastiffDropDownLabel  matlab.ui.control.Label % Guardar archivo de figura en TIFF
         GuardararchivoButton           matlab.ui.control.Button % Guardar archivo como .csv o .mat         
-        SavefileButton                 matlab.ui.control.Button % Botón de guardar archivo
+        SavefileButton                 matlab.ui.control.Button % BotÃ³n de guardar archivo
         datosCargados                  struct
         datosProcesados                struct
         frecuencia                     double % Datos por tomar en cuenta de la grafica Escalograma
@@ -28,16 +28,16 @@ classdef interfazapp < matlab.apps.AppBase
         idPaciente                     string % ID del paciente
     end
 
-    %% INICIALIZACIÓN DE COMPONENTES %%
+    %% INICIALIZACIÃ“N DE COMPONENTES %%
     methods (Access = private)
 
         function createComponents(app)
-            % Creación UIFigure
+            % CreaciÃ³n UIFigure
             app.UIFigure = uifigure('Visible', 'off');
             app.UIFigure.Position = [100 100 629 722];
             app.UIFigure.Name = 'MATLAB App';
 
-            % Creación de añadir archivo CSV
+            % CreaciÃ³n de aÃ±adir archivo CSV
             app.AddfilecontainingcsvfileDropDownLabel = uilabel(app.UIFigure);
             app.AddfilecontainingcsvfileDropDownLabel.BackgroundColor = [0.502 0.502 0.502];
             app.AddfilecontainingcsvfileDropDownLabel.HorizontalAlignment = 'center';
@@ -52,7 +52,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.AbrirarchivoButton.Text = 'Open file';
             app.AbrirarchivoButton.ButtonPushedFcn = @(~, ~) addCSV(app);
           
-            % Creación de añadir archivo MAT
+            % CreaciÃ³n de aÃ±adir archivo MAT
             app.AddfilecontainingmatfileDropDownLabel_2 = uilabel(app.UIFigure);
             app.AddfilecontainingmatfileDropDownLabel_2.BackgroundColor = [0.502 0.502 0.502];
             app.AddfilecontainingmatfileDropDownLabel_2.HorizontalAlignment = 'center';
@@ -67,7 +67,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.AbrirarchivoButton_2.Text = 'Open file';
             app.AbrirarchivoButton_2.ButtonPushedFcn = @(~, ~) addMAT(app);
             
-            % Creación de ID paciente
+            % CreaciÃ³n de ID paciente
             app.IDpacientEditFieldLabel = uilabel(app.UIFigure);
             app.IDpacientEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.IDpacientEditFieldLabel.HorizontalAlignment = 'center';
@@ -76,13 +76,13 @@ classdef interfazapp < matlab.apps.AppBase
             app.IDpacientEditFieldLabel.Position = [101 540 185 22];
             app.IDpacientEditFieldLabel.Text = 'ID pacient';
 
-            % Creación del recuadro para insertar ID paciente
+            % CreaciÃ³n del recuadro para insertar ID paciente
             app.IDpacientEditField = uieditfield(app.UIFigure, 'text');
             app.IDpacientEditField.HorizontalAlignment = 'center';
             app.IDpacientEditField.FontWeight = 'bold';
             app.IDpacientEditField.Position = [311 540 210 22];
            
-            % Creación Select range of frequency
+            % CreaciÃ³n Select range of frequency
             app.SelectrangeoffrequencyEditFieldLabel = uilabel(app.UIFigure);
             app.SelectrangeoffrequencyEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SelectrangeoffrequencyEditFieldLabel.HorizontalAlignment = 'center';
@@ -95,7 +95,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.SelectrangeoffrequencyEditField = uieditfield(app.UIFigure, 'text');
             app.SelectrangeoffrequencyEditField.Position = [256 487 100 22];
 
-            % Creación Select segment time
+            % CreaciÃ³n Select segment time
             app.SelectsegmenttimeEditFieldLabel = uilabel(app.UIFigure);
             app.SelectsegmenttimeEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SelectsegmenttimeEditFieldLabel.HorizontalAlignment = 'center';
@@ -108,7 +108,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.SelectsegmenttimeEditField = uieditfield(app.UIFigure, 'text');
             app.SelectsegmenttimeEditField.Position = [472 487 100 22];
             
-            % Creación Compute
+            % CreaciÃ³n Compute
             app.ComputeButton = uibutton(app.UIFigure, 'push');
             app.ComputeButton.BackgroundColor = [0.502 0.502 0.502];
             app.ComputeButton.FontWeight = 'bold';
@@ -117,7 +117,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.ComputeButton.Text = 'Compute';
             app.ComputeButton.ButtonPushedFcn = @(~, ~) compute(app);
 
-            % Creación Delate
+            % CreaciÃ³n Delate
             app.DelateButton = uibutton(app.UIFigure, 'push');
             app.DelateButton.BackgroundColor = [0.502 0.502 0.502];
             app.DelateButton.FontWeight = 'bold';
@@ -126,28 +126,28 @@ classdef interfazapp < matlab.apps.AppBase
             app.DelateButton.Text = 'Delate';
             app.DelateButton.ButtonPushedFcn = @(~, ~) delate(app);
 
-            % Gráfica Escalograma
+            % GrÃ¡fica Escalograma
             app.UIAxes = uiaxes(app.UIFigure);
             title(app.UIAxes, 'Escalograma')
             xlabel(app.UIAxes, 'Tiempo (seg)')
             ylabel(app.UIAxes, 'Frecuencia (Hz)')
             app.UIAxes.Position = [149 209 345 100];
 
-            % Gráfica Señal ERG
+            % GrÃ¡fica SeÃ±al ERG
             app.UIAxes2 = uiaxes(app.UIFigure);
-            title(app.UIAxes2, 'Señal ERG')
+            title(app.UIAxes2, 'SeÃ±al ERG')
             xlabel(app.UIAxes2, 'Tiempo (s)')
             ylabel(app.UIAxes2, 'Amplitud')
             app.UIAxes2.Position = [139 314 355 95];
 
-            % Gráfica Promedio escalograma
+            % GrÃ¡fica Promedio escalograma
             app.UIAxes3 = uiaxes(app.UIFigure);
             title(app.UIAxes3, 'Promedio escalograma')
             xlabel(app.UIAxes3, 'Frecuencia (Hz)')
             ylabel(app.UIAxes3, 'Potencia')
             app.UIAxes3.Position = [149 115 345 88];
 
-            % Creación de Guardar la figura como tiff
+            % CreaciÃ³n de Guardar la figura como tiff
             app.SaveFigureastiffDropDownLabel = uilabel(app.UIFigure);
             app.SaveFigureastiffDropDownLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SaveFigureastiffDropDownLabel.HorizontalAlignment = 'center';
@@ -156,13 +156,13 @@ classdef interfazapp < matlab.apps.AppBase
             app.SaveFigureastiffDropDownLabel.Position = [149 67 182 22];
             app.SaveFigureastiffDropDownLabel.Text = 'Save Figure as tiff';
             
-            % Creación de Guardar archivo de figura
+            % CreaciÃ³n de Guardar archivo de figura
             app.SavefileButton = uibutton(app.UIFigure, 'push');
             app.SavefileButton.Position = [362 66 100 22];
             app.SavefileButton.Text = 'Save Figure';
             app.SavefileButton.ButtonPushedFcn = @(~, ~) saveFigureAsTIFF(app);
             
-            % Creación de Guardar archivo
+            % CreaciÃ³n de Guardar archivo
             app.GuardararchivoButton = uibutton(app.UIFigure, 'push');
             app.GuardararchivoButton.BackgroundColor = [0.502 0.502 0.502];
             app.GuardararchivoButton.Position = [283 25 108 22];
@@ -175,17 +175,17 @@ classdef interfazapp < matlab.apps.AppBase
         end
 
         %% ABRIR ARCHIVOS .CSV Y .MAT %%
-        % Función para leer y cargar archivos .csv 
+        % FunciÃ³n para leer y cargar archivos .csv 
         function addCSV(app, ~)
             [archivo, ruta] = uigetfile('*.csv', 'Seleccione el archivo CSV');
             if isequal(archivo, 0) || isequal(ruta, 0)
-                disp('Operación cancelada');
+                disp('OperaciÃ³n cancelada');
             else
                 app.filename = archivo;
                 disp(['Archivo seleccionado: ', archivo]); % Imprime el nombre del archivo seleccionado
                 datos = readtable(fullfile(ruta, archivo));
                 
-                % Ajustar los nombres de las columnas según sea necesario
+                % Ajustar los nombres de las columnas segÃºn sea necesario
                 if any(strcmp('ms', datos.Properties.VariableNames)) && any(strcmp('uV', datos.Properties.VariableNames))
                     datos.Properties.VariableNames{'ms'} = 'Tiempo';
                     datos.Properties.VariableNames{'uV'} = 'Senal';
@@ -193,7 +193,7 @@ classdef interfazapp < matlab.apps.AppBase
                     app.datosCargados = table2struct(datos, 'ToScalar', true);
                     visualizarDatos(app, app.datosCargados); 
                 else
-                    uialert(app.UIFigure, 'Los datos no tienen las columnas esperadas.', 'Datos inválidos');
+                    uialert(app.UIFigure, 'Los datos no tienen las columnas esperadas.', 'Datos invÃ¡lidos');
                 end
             end
         end
@@ -201,7 +201,7 @@ classdef interfazapp < matlab.apps.AppBase
         function addMAT(app, ~)
             [archivo, ruta] = uigetfile('*.mat', 'Seleccione el archivo MAT');
             if isequal(archivo, 0) || isequal(ruta, 0)
-                disp('Operación cancelada');
+                disp('OperaciÃ³n cancelada');
             else 
                 app.filename = archivo;
                 datos = load(fullfile(ruta, archivo));
@@ -210,10 +210,10 @@ classdef interfazapp < matlab.apps.AppBase
                 variableNames = fieldnames(datos);
                 disp(variableNames); % Mostrar nombres de variables en la consola
                 
-                % Intentar identificar las variables de interés
+                % Intentar identificar las variables de interÃ©s
                 for i = 1:length(variableNames)
                     varData = datos.(variableNames{i});
-                    % Si la variable es un vector, asumimos que es la señal
+                    % Si la variable es un vector, asumimos que es la seÃ±al
                     if isvector(varData)
                         tiempo = (1:length(varData))';
                         senal = varData;
@@ -228,8 +228,8 @@ classdef interfazapp < matlab.apps.AppBase
                     end
                 end
                 
-                % Si no se encontraron variables de interés
-                uialert(app.UIFigure, 'Los datos no tienen las variables esperadas.', 'Datos inválidos');
+                % Si no se encontraron variables de interÃ©s
+                uialert(app.UIFigure, 'Los datos no tienen las variables esperadas.', 'Datos invÃ¡lidos');
             end
         end
 
@@ -239,9 +239,9 @@ classdef interfazapp < matlab.apps.AppBase
                 tiempo = datos.Tiempo;
                 senal = datos.Senal;
                 
-                % Graficar Señal ERG
+                % Graficar SeÃ±al ERG
                 plot(app.UIAxes2, tiempo, senal);
-                title(app.UIAxes2, ['Señal ERG - Archivo: ' app.filename]);
+                title(app.UIAxes2, ['SeÃ±al ERG - Archivo: ' app.filename]);
                 xlabel(app.UIAxes2, 'Tiempo (s)');
                 ylabel(app.UIAxes2, 'Amplitud');
                 
@@ -262,12 +262,12 @@ classdef interfazapp < matlab.apps.AppBase
                 xlabel(app.UIAxes3, 'Frecuencia (Hz)');
                 ylabel(app.UIAxes3, 'Potencia');
             else
-                uialert(app.UIFigure, 'Los datos no tienen las columnas "Tiempo" y "Senal".', 'Datos inválidos');
+                uialert(app.UIFigure, 'Los datos no tienen las columnas "Tiempo" y "Senal".', 'Datos invÃ¡lidos');
             end
         end
 
-        %% FUNCIONES PARA EL CÁLCULO %%
-        % Función para realizar el cálculo del escalograma y la señal ERG
+        %% FUNCIONES PARA EL CÃLCULO %%
+        % FunciÃ³n para realizar el cÃ¡lculo del escalograma y la seÃ±al ERG
         function [promedioEscalograma, tiempoEscalograma, escalograma, frecuencias, senalFiltrada, tiempo] = Wavelet_Escalograma_ERG(~, datos, minFrequency, maxFrequency, minTime, maxTime)
             % Verificar el tipo de datos y su estructura
             if isfield(datos, 'Tiempo') && isfield(datos, 'Senal')
@@ -277,7 +277,7 @@ classdef interfazapp < matlab.apps.AppBase
                 error('Los datos deben contener las columnas "Tiempo" y "Senal".');
             end
 
-            % Filtrado de la señal
+            % Filtrado de la seÃ±al
             fs = 1000; % Frecuencia de muestreo
             [b, a] = butter(4, [minFrequency maxFrequency] / (fs / 2), 'bandpass'); % Filtro paso banda
             senalFiltrada = filtfilt(b, a, senal);
@@ -305,9 +305,9 @@ classdef interfazapp < matlab.apps.AppBase
             tiempoStr = app.SelectsegmenttimeEditField.Value;
             app.idPaciente = app.IDpacientEditField.Value;
 
-            % Verificar que los valores sean válidos
+            % Verificar que los valores sean vÃ¡lidos
             if isempty(frecuenciaStr) || isempty(tiempoStr) || isempty(app.idPaciente)
-                uialert(app.UIFigure, 'Ingrese valores válidos de frecuencia, tiempo e ID de paciente.', 'Valores Inválidos');
+                uialert(app.UIFigure, 'Ingrese valores vÃ¡lidos de frecuencia, tiempo e ID de paciente.', 'Valores InvÃ¡lidos');
                 return;
             end
             
@@ -317,7 +317,7 @@ classdef interfazapp < matlab.apps.AppBase
                 timeParts = str2double(strsplit(tiempoStr, ','));
 
                 if numel(freqParts) ~= 2 || numel(timeParts) ~= 2
-                    uialert(app.UIFigure, 'Ingrese rangos válidos de frecuencia y tiempo en el formato min,max.', 'Formato Inválido');
+                    uialert(app.UIFigure, 'Ingrese rangos vÃ¡lidos de frecuencia y tiempo en el formato min,max.', 'Formato InvÃ¡lido');
                     return;
                 end
                 
@@ -326,7 +326,7 @@ classdef interfazapp < matlab.apps.AppBase
                 minTime = timeParts(1);
                 maxTime = timeParts(2);
 
-                % Realizar cálculos y generar gráficos
+                % Realizar cÃ¡lculos y generar grÃ¡ficos
                 [promedioEscalograma1, tiempoEscalograma, escalograma1, frecuencias, senalFiltrada, tiempo] = app.Wavelet_Escalograma_ERG(app.datosCargados, minFrequency, maxFrequency, minTime, maxTime);
 
                 % Visualizar escalograma
@@ -337,9 +337,9 @@ classdef interfazapp < matlab.apps.AppBase
                 ylabel(app.UIAxes, 'Frecuencia (Hz)');
                 colorbar(app.UIAxes);
 
-                % Visualizar señal ERG
+                % Visualizar seÃ±al ERG
                 plot(app.UIAxes2, tiempo, senalFiltrada);
-                title(app.UIAxes2, 'Señal ERG');
+                title(app.UIAxes2, 'SeÃ±al ERG');
                 xlabel(app.UIAxes2, 'Tiempo (s)');
                 ylabel(app.UIAxes2, 'Amplitud');
 
@@ -375,13 +375,13 @@ classdef interfazapp < matlab.apps.AppBase
         if ischar(file)
             filePath = fullfile(path, file);
 
-            % Crear figura temporal para las tres gráficas
+            % Crear figura temporal para las tres grÃ¡ficas
             fig = figure('Visible', 'off');
             
             % Copiar y organizar los ejes en la nueva figura
             ax1 = subplot(3, 1, 1, 'Parent', fig);
             copyData(app,app.UIAxes2, ax1);
-            title(ax1, 'Señal ERG');
+            title(ax1, 'SeÃ±al ERG');
             xlabel(ax1, 'Tiempo (s)');
             ylabel(ax1, 'Amplitud');
 
@@ -430,13 +430,13 @@ end
 
         % GUARDAR ARCHIVO YA SEA COMO .MAT O .CSV %%
 function guardarArchivo(app)
-    % Permitir al usuario seleccionar la ubicación y el nombre del archivo
+    % Permitir al usuario seleccionar la ubicaciÃ³n y el nombre del archivo
     [file, path, filterindex] = uiputfile({'.mat','MAT-files (.mat)'; '.csv','CSV-files (.csv)'}, 'Save Data As');
     if ischar(file)
         filePath = fullfile(path, file);
         datos = app.datosProcesados;
 
-        % Verificar que los datos estén en el formato correcto
+        % Verificar que los datos estÃ©n en el formato correcto
         requiredFields = {'Tiempo', 'Escalograma', 'Frecuencias', 'PromedioEscalograma', 'SenalFiltrada', 'TiempoResampleado', 'IDPaciente', 'Filename'};
         if isstruct(datos) && all(isfield(datos, requiredFields))
             if filterindex == 1
@@ -459,7 +459,7 @@ function guardarArchivo(app)
                 end
             end
         else
-            uialert(app.UIFigure, 'Los datos no están en el formato correcto para guardar.', 'Error');
+            uialert(app.UIFigure, 'Los datos no estÃ¡n en el formato correcto para guardar.', 'Error');
         end
     else
         disp('User canceled save.');
@@ -467,14 +467,14 @@ function guardarArchivo(app)
 end
 
     end
-    %% CREACIÓN Y ELIMINACIÓN DE APLICACIÓN %%
+    %% CREACIÃ“N Y ELIMINACIÃ“N DE APLICACIÃ“N %%
     methods (Access = public)
 
-        % Construcción de la aplicación
+        % ConstrucciÃ³n de la aplicaciÃ³n
         function app = interfazapp
             createComponents(app)
             registerApp(app, app.UIFigure)
-            % Si no hay argumentos de salida, limpiar la aplicación de la memoria
+            % Si no hay argumentos de salida, limpiar la aplicaciÃ³n de la memoria
             if nargout == 0
                 clear app
             end
