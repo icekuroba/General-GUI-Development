@@ -1,5 +1,5 @@
 classdef interfazapp < matlab.apps.AppBase
-    %% COMPONENTES DE LA APLICACIÓN %%
+    %% COMPONENTES DE LA APLICACIÃ“N %%
     properties (Access = public)
         UIFigure                       matlab.ui.Figure
         AddfilecontainingcsvfileDropDownLabel  matlab.ui.control.Label 
@@ -14,20 +14,20 @@ classdef interfazapp < matlab.apps.AppBase
         SelectsegmenttimeEditField     matlab.ui.control.EditField % Seleccionar tiempo
         ComputeButton                  matlab.ui.control.Button % Compute
         DeleteButton                   matlab.ui.control.Button % Delete
-        UIAxes                         matlab.ui.control.UIAxes % Grafica Señal ERG
+        UIAxes                         matlab.ui.control.UIAxes % Grafica SeÃ±al ERG
         UIAxes2                        matlab.ui.control.UIAxes % Grafica Espectro de Potencia
         UIAxes3                        matlab.ui.control.UIAxes % Grafica Escalograma
         SaveFigureastiffDropDownLabel  matlab.ui.control.Label % Guardar archivo de figura en FIG
         GuardararchivoButton           matlab.ui.control.Button % Guardar archivo como .csv o .mat         
-        SavefileButton                 matlab.ui.control.Button % Botón de guardar archivo
+        SavefileButton                 matlab.ui.control.Button % BotÃ³n de guardar archivo
         datosCargados                  struct
         datosProcesados                struct
         filename                       char % Nombre del archivo cargado
         idPaciente                     string % ID del paciente
         PasAlts                        double = 0.1 % Filtro pasa altas
         PasBjs                         double = 2 % Filtro pasa bajas
-        WPasAlts                       double = 0.1 % Frecuencia mínima de wavelet
-        WPasBjs                        double = 2 % Frecuencia máxima de wavelet
+        WPasAlts                       double = 0.1 % Frecuencia mÃ­nima de wavelet
+        WPasBjs                        double = 2 % Frecuencia mÃ¡xima de wavelet
         canal                          double = 1 % Canal
         TI                             double = [0 1] % Intervalo de tiempo
         selectedVar                    string % Variable seleccionada
@@ -39,12 +39,12 @@ classdef interfazapp < matlab.apps.AppBase
         TiempoEscalograma
         filePath                       string % Ruta del archivo cargado para abrir un CSV
     end
-    %% INICIALIZACIÓN DE COMPONENTES %%
+    %% INICIALIZACIÃ“N DE COMPONENTES %%
     methods (Access = private)
         function startupFcn(app)
         end
         function createComponents(app)
-            % Creación UIFigure
+            % CreaciÃ³n UIFigure
             app.UIFigure = uifigure('Visible', 'off');
             app.UIFigure.Position = [100 100 629 722];
             app.UIFigure.Name = 'MATLAB App';
@@ -77,7 +77,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.AbrirarchivoButton_2.Text = 'Open file';
             app.AbrirarchivoButton_2.ButtonPushedFcn = @(~, ~) addMAT(app);
 
-            % Creación de ID paciente
+            % CreaciÃ³n de ID paciente
             app.IDpacientEditFieldLabel = uilabel(app.UIFigure);
             app.IDpacientEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.IDpacientEditFieldLabel.HorizontalAlignment = 'center';
@@ -91,7 +91,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.IDpacientEditField.Tooltip = 'Ingrese el ID del paciente';
             app.IDpacientEditField.Tooltip = 'Para el ID ingresar letras y numeros como: Paciente1';
 
-            % Creación Select range of frequency
+            % CreaciÃ³n Select range of frequency
             app.SelectrangeoffrequencyEditFieldLabel = uilabel(app.UIFigure);
             app.SelectrangeoffrequencyEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SelectrangeoffrequencyEditFieldLabel.HorizontalAlignment = 'center';
@@ -104,7 +104,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.SelectrangeoffrequencyEditField.Position = [256 487 50 22];
             app.SelectrangeoffrequencyEditField.Tooltip = 'Ingrese el rango de frecuencia como min,max por ejemplo: 1,60';
 
-            % Creación Select segment time
+            % CreaciÃ³n Select segment time
             app.SelectsegmenttimeEditFieldLabel = uilabel(app.UIFigure);
             app.SelectsegmenttimeEditFieldLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SelectsegmenttimeEditFieldLabel.HorizontalAlignment = 'center';
@@ -117,7 +117,7 @@ classdef interfazapp < matlab.apps.AppBase
             app.SelectsegmenttimeEditField.Position = [469 487 50 22];
             app.SelectsegmenttimeEditField.Tooltip = 'Ingrese el rango de tiempo como min,max por ejemplo: 0,300';
 
-            % Creación Compute
+            % CreaciÃ³n Compute
             app.ComputeButton = uibutton(app.UIFigure, 'push');
             app.ComputeButton.BackgroundColor = [0.502 0.502 0.502];
             app.ComputeButton.FontWeight = 'bold';
@@ -127,7 +127,7 @@ classdef interfazapp < matlab.apps.AppBase
             %app.ComputeButton.Tooltip = 'Dar clic en compute antes de guardar como figura o archivo';
             app.ComputeButton.ButtonPushedFcn = @(~, ~) compute(app);
 
-            % Creación Delete
+            % CreaciÃ³n Delete
             app.DeleteButton = uibutton(app.UIFigure, 'push');
             app.DeleteButton.BackgroundColor = [0.502 0.502 0.502];
             app.DeleteButton.FontWeight = 'bold';
@@ -136,28 +136,28 @@ classdef interfazapp < matlab.apps.AppBase
             app.DeleteButton.Text = 'Delete';
             app.DeleteButton.ButtonPushedFcn = @(~, ~) clearData(app);
 
-            % Gráfica Señal ERG
+            % GrÃ¡fica SeÃ±al ERG
             app.UIAxes = uiaxes(app.UIFigure);
-            title(app.UIAxes, 'Señal ERG')
+            title(app.UIAxes, 'SeÃ±al ERG')
             xlabel(app.UIAxes, 'Tiempo (seg)')
             ylabel(app.UIAxes, 'Amplitud')
             app.UIAxes.Position = [139 314 355 95];
 
-            % Gráfica Espectro de Potencia
+            % GrÃ¡fica Espectro de Potencia
             app.UIAxes2 = uiaxes(app.UIFigure);
             title(app.UIAxes2, 'Espectro de Potencia')
             xlabel(app.UIAxes2, 'Frecuencia (Hz)')
             ylabel(app.UIAxes2, 'Potencia')
             app.UIAxes2.Position = [149 209 345 100];
 
-            % Gráfica Escalograma
+            % GrÃ¡fica Escalograma
             app.UIAxes3 = uiaxes(app.UIFigure);
             title(app.UIAxes3, 'Escalograma')
             xlabel(app.UIAxes3, 'Tiempo (seg)')
             ylabel(app.UIAxes3, 'Frecuencia (Hz)')
             app.UIAxes3.Position = [149 100 345 100];
 
-            % Etiqueta y botón para guardar la figura como FIG
+            % Etiqueta y botÃ³n para guardar la figura como FIG
             app.SaveFigureastiffDropDownLabel = uilabel(app.UIFigure);
             app.SaveFigureastiffDropDownLabel.BackgroundColor = [0.502 0.502 0.502];
             app.SaveFigureastiffDropDownLabel.HorizontalAlignment = 'center';
@@ -183,17 +183,17 @@ classdef interfazapp < matlab.apps.AppBase
             app.UIFigure.Visible = 'on';
         end
         %% ABRIR ARCHIVOS .CSV Y .MAT %%
-        % Función para leer y cargar archivos .csv 
+        % FunciÃ³n para leer y cargar archivos .csv 
         function addCSV(app, ~)
             [file, path] = uigetfile('*.csv');
             if isequal(file, 0)
-                disp('Operación cancelada');
+                disp('OperaciÃ³n cancelada');
             else
-                app.filePath = fullfile(path, file); % Asegúrate de que filePath está definido en las propiedades
+                app.filePath = fullfile(path, file); % AsegÃºrate de que filePath estÃ¡ definido en las propiedades
                 app.filename = file;
                 datos = readtable(app.filePath);
                 disp(['Archivo seleccionado: ', app.filePath]);
-                % Ajustar los nombres de las columnas según sea necesario
+                % Ajustar los nombres de las columnas segÃºn sea necesario
                 if any(strcmp('ms', datos.Properties.VariableNames)) && any(strcmp('uV', datos.Properties.VariableNames))
                     datos.Properties.VariableNames{'ms'} = 'Tiempo';
                     datos.Properties.VariableNames{'uV'} = 'Senal';
@@ -208,7 +208,7 @@ classdef interfazapp < matlab.apps.AppBase
                                     'Solo se puede seleccionar una variable a la vez.', ''}, ...
                                     'SelectionMode', 'single', 'ListString', vars);
                     if tf == 0
-                        disp('No se seleccionó ninguna variable');
+                        disp('No se seleccionÃ³ ninguna variable');
                         return;
                     end
                     app.selectedVar = vars{indx};
@@ -230,7 +230,7 @@ classdef interfazapp < matlab.apps.AppBase
                         error('Los datos contienen valores NaN.');
                     end
 
-                    % Filtrar la señal
+                    % Filtrar la seÃ±al
                     cfg = [];
                     cfg.lpfilter = 'yes';
                     cfg.lpfreq = [app.PasBjs];
@@ -255,15 +255,15 @@ classdef interfazapp < matlab.apps.AppBase
                     muestra = ft_selectdata(cfg, muestra);
                     actualizarEscalograma(app, muestra);
                 else
-                    uialert(app.UIFigure, 'Los datos no tienen las columnas esperadas.', 'Datos inválidos');
+                    uialert(app.UIFigure, 'Los datos no tienen las columnas esperadas.', 'Datos invÃ¡lidos');
                 end
             end
         end
-        %% Función para leer y cargar archivos .mat 
+        %% FunciÃ³n para leer y cargar archivos .mat 
 function addMAT(app, ~)
     [file, path] = uigetfile('*.mat', 'Seleccionar archivo .mat');
     if isequal(file, 0)
-        disp('Operación cancelada');
+        disp('OperaciÃ³n cancelada');
         return;
     end
     fullFileName = fullfile(path, file);
@@ -274,7 +274,7 @@ function addMAT(app, ~)
                     'Solo se puede seleccionar una variable a la vez.', ''}, ...
                     'SelectionMode', 'single', 'ListString', vars);
     if tf == 0
-        disp('No se seleccionó ninguna variable');
+        disp('No se seleccionÃ³ ninguna variable');
         return;
     end
     app.selectedVar = vars{indx}; % la variable seleccionada
@@ -282,10 +282,10 @@ function addMAT(app, ~)
     tabla = array2table(variableData); % canal a usar
 
     % Configurar muestra
-    number = height(tabla(:,1)); % cuenta el número de canales
+    number = height(tabla(:,1)); % cuenta el nÃºmero de canales
     muestra.fsample = 2000; % poner Frec de muestreo en Hz
     time = 1/muestra.fsample:1/muestra.fsample:number/muestra.fsample;
-    muestra.sampleinfo = [1 length(time)]; % cuenta el número de datos
+    muestra.sampleinfo = [1 length(time)]; % cuenta el nÃºmero de datos
     datos = table2array(tabla);
     muestra.trial{1} = datos';
     muestra.time{1} = time;
@@ -297,7 +297,7 @@ function addMAT(app, ~)
    % if any(isnan(muestra.trial{1,1}(:)))
     %    error('Los datos contienen valores NaN.');
     %end
-    % Filtrar la señal
+    % Filtrar la seÃ±al
     cfg = [];
     cfg.lpfilter = 'yes';
     cfg.lpfreq = app.PasBjs; % filtro pasa bajas 
@@ -308,7 +308,7 @@ function addMAT(app, ~)
     cfg.demean = 'yes';
     cfg.dftfilter = 'yes';
     cfg.dftreplace = 'zero';
-    muestra = ft_preprocessing(cfg, muestra); % preprocesa la señal
+    muestra = ft_preprocessing(cfg, muestra); % preprocesa la seÃ±al
     muestra = ft_struct2single(muestra);
 
     % Cambiar frecuencia de muestreo
@@ -332,16 +332,16 @@ function compute(app, ~)
     app.idPaciente = app.IDpacientEditField.Value;  % Asignar el valor del campo de texto de ID
     freqRangeStr = app.SelectrangeoffrequencyEditField.Value;
     timeRangeStr = app.SelectsegmenttimeEditField.Value;
-    freqRange = str2num(freqRangeStr); % Convierte a números
-    timeRange = str2num(timeRangeStr); % Convierte a números
+    freqRange = str2num(freqRangeStr); % Convierte a nÃºmeros
+    timeRange = str2num(timeRangeStr); % Convierte a nÃºmeros
     % Valida el rango de frecuencia y tiempo
     if isempty(freqRange) || length(freqRange) ~= 2
-        uialert(app.UIFigure, 'Por favor, ingresa un rango de frecuencia válido en el formato [min, max]', 'Error de Datos');
+        uialert(app.UIFigure, 'Por favor, ingresa un rango de frecuencia vÃ¡lido en el formato [min, max]', 'Error de Datos');
         app.ComputeButton.Text = 'Compute'; 
         return;
     end
     if isempty(timeRange) || length(timeRange) ~= 2
-        uialert(app.UIFigure, 'Por favor, ingresa un intervalo de tiempo válido en el formato [start, end]', 'Error de Datos');
+        uialert(app.UIFigure, 'Por favor, ingresa un intervalo de tiempo vÃ¡lido en el formato [start, end]', 'Error de Datos');
         app.ComputeButton.Text = 'Compute'; 
         return;
     end
@@ -352,17 +352,17 @@ function compute(app, ~)
     % Verificar que se haya cargado un archivo y seleccionado una variable
     if isempty(app.datosCargados) || isempty(app.selectedVar)
         uialert(app.UIFigure, 'Por favor, carga un archivo y selecciona una variable antes de computar los cambios.', 'Error de Datos');
-        app.ComputeButton.Text = 'Compute'; % Restaurar el texto del botón
+        app.ComputeButton.Text = 'Compute'; % Restaurar el texto del botÃ³n
         return;
     end
 
     % Convertir datos de la variable seleccionada a tabla
     variableData = app.datosCargados.(app.selectedVar);
     tabla = array2table(variableData); % Canal a usar
-    number = height(tabla(:,1)); % Cuenta el número de canales
+    number = height(tabla(:,1)); % Cuenta el nÃºmero de canales
     muestra.fsample = 2000; % Poner Frec de muestreo en Hz
     time = 1/muestra.fsample:1/muestra.fsample:number/muestra.fsample;
-    muestra.sampleinfo = [1 length(time)]; % Cuenta el número de datos
+    muestra.sampleinfo = [1 length(time)]; % Cuenta el nÃºmero de datos
     datos = table2array(tabla);
     muestra.trial{1} = datos';
     muestra.time{1} = time;
@@ -370,12 +370,12 @@ function compute(app, ~)
     Q = muestra.trial{1,1}(:,:);
     Q(isnan(Q)) = 0;
     muestra.trial{1,1}(:,:) = Q;
-    % Mostrar valores de depuración
+    % Mostrar valores de depuraciÃ³n
     disp(['Frecuencia pasa altas: ', num2str(app.WPasAlts)]);
     disp(['Frecuencia pasa bajas: ', num2str(app.WPasBjs)]);
     disp(['Intervalo de tiempo: ', num2str(app.TI)]);
 
-    % Filtrar la señal
+    % Filtrar la seÃ±al
     cfg = [];
     cfg.lpfilter = 'yes';
     cfg.lpfreq = app.WPasBjs; % Filtro pasa bajas (usando rango de frecuencia ingresado)
@@ -386,7 +386,7 @@ function compute(app, ~)
     cfg.demean = 'yes';
     cfg.dftfilter = 'yes';
     cfg.dftreplace = 'zero';
-    muestra = ft_preprocessing(cfg, muestra); % Preprocesa la señal
+    muestra = ft_preprocessing(cfg, muestra); % Preprocesa la seÃ±al
     muestra = ft_struct2single(muestra);
 
     % Cambiar frecuencia de muestreo
@@ -404,7 +404,7 @@ function compute(app, ~)
     actualizarEscalograma(app, muestra);
     freqAnalysisElapsedTime = toc(freqAnalysisStartTime);
     disp(['the call to "ft_freqanalysis" took ', num2str(freqAnalysisElapsedTime), ' seconds']);
-    % Detener la medición de tiempo
+    % Detener la mediciÃ³n de tiempo
     elapsedTime = toc;
     % Mostrar tiempo transcurrido
     disp(['Elapsed time is ', num2str(elapsedTime), ' seconds.']);
@@ -425,7 +425,7 @@ function clearData(app, ~)
         app.SelectrangeoffrequencyEditField.Value = '';
         app.SelectsegmenttimeEditField.Value = '';
     end
-    % Función para restablecer las propiedades del objeto de la aplicación
+    % FunciÃ³n para restablecer las propiedades del objeto de la aplicaciÃ³n
     function resetProperties(app)
         app.datosCargados = struct();
         app.datosProcesados = struct();
@@ -440,32 +440,32 @@ function clearData(app, ~)
         app.filePath = '';
         app.selectedVar = '';
     end
-    % Función para restablecer los ejes de la interfaz de usuario
+    % FunciÃ³n para restablecer los ejes de la interfaz de usuario
     function resetUIAxes(ax)
         cla(ax); % Limpiar los ejes
         xlabel(ax, ''); % Eliminar etiquetas de eje X
         ylabel(ax, ''); % Eliminar etiquetas de eje Y
-        title(ax, ''); % Eliminar título
+        title(ax, ''); % Eliminar tÃ­tulo
         colorbar(ax, 'off'); % Desactivar barra de color
-        set(ax, 'XLimMode', 'auto', 'YLimMode', 'auto', 'ZLimMode', 'auto'); % Restablecer límites de los ejes
+        set(ax, 'XLimMode', 'auto', 'YLimMode', 'auto', 'ZLimMode', 'auto'); % Restablecer lÃ­mites de los ejes
     end
 end
         %% GUARDAR COMO FIGURA 
 function saveFigure(app)
     [file, path] = uiputfile('*.fig', 'Guardar figura como');
     if isequal(file, 0)
-        disp('No se seleccionó ningún archivo');
+        disp('No se seleccionÃ³ ningÃºn archivo');
         return;
     end
     fullFileName = fullfile(path, file); % Crear el nombre completo del archivo
     h = figure('Visible', 'off');
-    % Gráfica la señal filtrada
+    % GrÃ¡fica la seÃ±al filtrada
     subplot(3, 1, 1);
     plot(app.tiempo, app.senfilt(1, :) + 2, 'k', 'LineWidth', 0.5);
     legend('ERG', 'FontSize', 17);
     xlabel('Tiempo (s)', 'FontSize', 20);
     ylabel('Amplitud normalizada', 'FontSize', 20);
-    title('Señal ERG', 'FontSize', 20);
+    title('SeÃ±al ERG', 'FontSize', 20);
     box off;
     grid off;
     set(gca, 'Color', 'w');
@@ -516,7 +516,7 @@ end
 function saveFile(app, ~)
     [file, path] = uiputfile('*.mat', 'Guardar datos como');
     if isequal(file, 0)
-        disp('No se seleccionó ningún archivo');
+        disp('No se seleccionÃ³ ningÃºn archivo');
         return;
     end
     app.filename = file; % Se actualiza el nombre del archivo basado en el nombre seleccionado por el usuario
@@ -543,18 +543,18 @@ function actualizarEscalograma(app, muestra)
     idxTiempo = tiempoTotal >= app.TI(1) & tiempoTotal <= app.TI(2);
     tiempoRecortado = tiempoTotal(idxTiempo);
     senfiltRecortado = senfilt(:, idxTiempo);
-    % Configuración para el análisis de frecuencia utilizando wavelet
+    % ConfiguraciÃ³n para el anÃ¡lisis de frecuencia utilizando wavelet
     cfg = [];
     cfg.method = 'wavelet';
     cfg.width = 7;
     cfg.output = 'pow';
     cfg.foi = app.WPasAlts:0.01:app.WPasBjs; % Rango de frecuencias para analizar
     cfg.toi = linspace(tiempoRecortado(1), tiempoRecortado(end), length(tiempoRecortado)); % Intervalos de tiempo para analizar
-    % Manejo de errores para el análisis de frecuencia
+    % Manejo de errores para el anÃ¡lisis de frecuencia
     try
         freq = ft_freqanalysis(cfg, muestra);
     catch ME
-        error('Error en el análisis de frecuencia: %s', ME.message);
+        error('Error en el anÃ¡lisis de frecuencia: %s', ME.message);
     end    
     escalograma1 = squeeze(freq.powspctrm(1,:,:));  % Extrae los datos del escalograma
     frecuencias = freq.freq;
@@ -562,7 +562,7 @@ function actualizarEscalograma(app, muestra)
 
     % Graficar el escalograma
     cla(app.UIAxes3); % Limpiar el eje antes de graficar
-    surf(app.UIAxes3, TiempoEscalograma, frecuencias, escalograma1, 'EdgeColor', 'none'); % Crea la gráfica para el espectrograma
+    surf(app.UIAxes3, TiempoEscalograma, frecuencias, escalograma1, 'EdgeColor', 'none'); % Crea la grÃ¡fica para el espectrograma
     c = colorbar(app.UIAxes3); % Asocia la barra de color con el eje UIAxes3
     c.Label.String = 'Potencia';
     xlabel(app.UIAxes3, 'Tiempo (seg)', 'FontSize', 20, 'FontName', 'Arial', 'Interpreter', 'none');
@@ -591,17 +591,17 @@ function actualizarEscalograma(app, muestra)
     hl = line(app.UIAxes2, frecuencias', promedioEscalograma1);
     set(hp, 'FaceColor', [0,0,0], 'EdgeColor', 'none');
     set(hl, 'Color', 'k');
-    alpha(hp, .1); % Específicamente aplicar transparencia al parche 'hp'
+    alpha(hp, .1); % EspecÃ­ficamente aplicar transparencia al parche 'hp'
     hold(app.UIAxes2, 'on');
-    set(app.UIAxes2, 'TickDir', 'out'); % Se ajusta la dirección de las marcas de los ejes
+    set(app.UIAxes2, 'TickDir', 'out'); % Se ajusta la direcciÃ³n de las marcas de los ejes
 
-    % Graficar la señal filtrada
+    % Graficar la seÃ±al filtrada
     cla(app.UIAxes); % Limpiar el eje antes de graficar
     plot(app.UIAxes, tiempoRecortado, senfiltRecortado(1,:)+2, 'k', 'LineWidth', .5); % 'Color',[0.4661 0.6740 0.1880] [0.8500, 0.3250, 0.0980
     legend(app.UIAxes, 'ERG');
     xlabel(app.UIAxes, 'Tiempo (s)', 'FontSize', 20, 'FontName', 'Arial', 'Interpreter', 'none');
     ylabel(app.UIAxes, 'Amplitud normalizada', 'FontSize', 20, 'FontName', 'Arial', 'Interpreter', 'none');
-    title(app.UIAxes, 'Señal ERG', 'FontSize', 20, 'FontName', 'Arial', 'Interpreter', 'none');
+    title(app.UIAxes, 'SeÃ±al ERG', 'FontSize', 20, 'FontName', 'Arial', 'Interpreter', 'none');
     box(app.UIAxes, 'off');
     grid(app.UIAxes, 'off');
     set(app.UIAxes, 'Color', 'w');
@@ -617,13 +617,13 @@ function actualizarEscalograma(app, muestra)
     app.TiempoEscalograma = TiempoEscalograma;
 end
     end
-    %% CREACIÓN Y ELIMINACIÓN DE APLICACIÓN %%
+    %% CREACIÃ“N Y ELIMINACIÃ“N DE APLICACIÃ“N %%
     methods (Access = public)
-        function app = interfazapp % Construcción de la aplicación
+        function app = interfazapp % ConstrucciÃ³n de la aplicaciÃ³n
             createComponents(app)
-            startupFcn(app) % Llamada al método de inicialización
+            startupFcn(app) % Llamada al mÃ©todo de inicializaciÃ³n
             registerApp(app, app.UIFigure)
-            % Si no hay argumentos de salida, limpiar la aplicación de la memoria
+            % Si no hay argumentos de salida, limpiar la aplicaciÃ³n de la memoria
             if nargout == 0
                 clear app
             end
