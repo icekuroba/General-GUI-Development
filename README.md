@@ -1,7 +1,5 @@
 # General GUI Development
 
-## Overview
-
 This repository contains graphical user interface projects organized by programming language.
 
 The goal is to document practical GUI development projects created with Java, JavaScript, MATLAB, and Python, focusing on interface design, user interaction, basic application logic, and project documentation.
